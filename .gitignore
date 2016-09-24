@@ -1,4 +1,4 @@
 .project
-webapp/target
-webapp/.settings
-webapp/.classpath
+*/target
+*/.settings
+*/.classpath
