@@ -6,6 +6,7 @@
 	<artifactId>ehrservices</artifactId>
 	<name>ehrservices</name>
 	<parent>
+		<relativePath>../pom.xml</relativePath>
 		<groupId>com.nagarro.fortis.ehr</groupId>
 		<artifactId>multi-module-mvn</artifactId>
 		<version>0.0.1-SNAPSHOT</version>

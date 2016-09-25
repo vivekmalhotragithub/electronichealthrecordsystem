@@ -9,6 +9,7 @@
 
 
 	<parent>
+		<relativePath>../pom.xml</relativePath>
 		<artifactId>multi-module-mvn</artifactId>
 		<groupId>com.nagarro.fortis.ehr</groupId>
 		<version>0.0.1-SNAPSHOT</version>
@@ -36,6 +37,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.nagarro.fortis.ehr</groupId>
+			<artifactId>ehrservices</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
@@ -70,7 +77,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>hibernate3-maven-plugin</artifactId>
-				<version>2.1</version>
+				<version>2.2</version>
 				<configuration>
 					<components>
 						<component>

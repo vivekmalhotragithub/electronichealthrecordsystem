@@ -9,8 +9,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-        classpath:applicationContext-ehrservices.xml
-        classpath:applicationContext-persist.xml
+        classpath*:applicationContext-persist.xml
       </param-value>
 	</context-param>
 

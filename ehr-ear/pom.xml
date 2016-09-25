@@ -7,11 +7,12 @@
 
 
 	<parent>
+		<relativePath>../pom.xml</relativePath>
 		<artifactId>multi-module-mvn</artifactId>
 		<groupId>com.nagarro.fortis.ehr</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.nagarro.fortis.ehr</groupId>
@@ -25,4 +26,30 @@
 			<type>war</type>
 		</dependency>
 	</dependencies>
+
+
+	<!-- EAR plugin -->
+	<build>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<modules>
+						<jarModule>
+							<groupId>com.nagarro.fortis.ehr</groupId>
+							<artifactId>ehrservices</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+						<webModule>
+							<groupId>com.nagarro.fortis.ehr</groupId>
+							<artifactId>webapp</artifactId>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
