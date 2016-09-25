@@ -1,4 +1,4 @@
-package com.nagarro.fortis.ehr.dao;
+package com.nagarro.ycompany.ehr.dao;
 
 /**
  * Hello world!
