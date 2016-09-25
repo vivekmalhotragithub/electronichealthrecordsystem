@@ -15,12 +15,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.nagarro.fortis.ehr</groupId>
-			<artifactId>ehrdao</artifactId>
+			<artifactId>ehrservices</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.nagarro.fortis.ehr</groupId>
-			<artifactId>simple-war-child</artifactId>
+			<artifactId>webapp</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>war</type>
 		</dependency>
