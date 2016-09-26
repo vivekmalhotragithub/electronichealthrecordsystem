@@ -7,31 +7,42 @@
 	        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<jdbc:embedded-database id="dataSource" type="HSQL">
+		<jdbc:script location="classpath:schema.sql"/>
+        <jdbc:script location="classpath:test-data.sql"/>
 	</jdbc:embedded-database>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.nagarro.ycompany.ehr.dao.entity" />
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
-		</property>
-		<!-- Another way of indicating that we want to update the schema; Spring 
-			calls this _after_ the session factory is created, while the hbm2ddl flag 
-			above is processed by Hibernate _during_ creationo f the session factory. 
-			<property name="schemaUpdate" value="true" /> -->
-	</bean>
+        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="annotatedClasses">
+            <list>
+                <value>com.nagarro.ycompany.ehr.dao.entity.InternalUser</value>
+                <value>com.nagarro.ycompany.ehr.dao.entity.UserCredential</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+<!--                 <prop key="hibernate.connection.pool_size">0</prop> -->
+<!--         		<prop key="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</prop> -->
+<!--         		<prop key="hibernate.connection.url">jdbc:hsqldb:data/ycompanyehr;shutdown=true</prop> -->
+<!--         		<prop key="hibernate.connection.username">sa</prop> -->
+<!--         	    <prop key="hibernate.connection.password"></prop> -->
+<!--         	    <prop key="hibernate.connection.autocommit">true</prop> -->
+<!--         	    <prop key="hibernate.jdbc.batch_size">0</prop> -->
+            </props>
+        </property>
+    </bean>
 
 
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+<!-- 	<bean id="transactionManager" -->
+<!-- 		class="org.springframework.orm.hibernate3.HibernateTransactionManager"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
 
-	<tx:annotation-driven />
+<!-- 	<tx:annotation-driven /> -->
 
 </beans>

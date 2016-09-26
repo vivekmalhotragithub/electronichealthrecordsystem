@@ -10,6 +10,6 @@
 	<modules>
 		<module>ehrservices</module>
 		<module>webapp</module>
-		<module>ehr-ear</module>
+	<!-- <module>ehr-ear</module> -->
 	</modules>
 </project>
