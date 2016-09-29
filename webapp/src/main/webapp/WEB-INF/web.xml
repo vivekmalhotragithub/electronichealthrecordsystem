@@ -8,7 +8,11 @@
 	<!-- -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext*.xml</param-value>
+		<param-value>
+		/WEB-INF/dispatcher-servlet.xml
+		classpath*:applicationContext-persist.xml
+		classpath*:applicationContext-ehrservices.xml
+		</param-value>
 	</context-param>
 
 	<!-- log4j configuration -->
@@ -28,10 +32,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
-	</context-param>
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
