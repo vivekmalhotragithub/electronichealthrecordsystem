@@ -7,6 +7,7 @@
 	<h2>Hello World</h2>
 	<h2>
 			${message} ${name}
+			total users: ${allusers}
 	</h2>
 </body>
 </html>

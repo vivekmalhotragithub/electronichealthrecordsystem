@@ -10,12 +10,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "INTERNAL_USER")
 public class InternalUser {
-	
-    private Integer userId;
-	
+
+	private Integer userId;
 
 	private String fullName;
-
 
 	/**
 	 * @return the id
@@ -27,9 +25,9 @@ public class InternalUser {
 		return userId;
 	}
 
-
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setUserId(Integer id) {
 		this.userId = id;
@@ -43,12 +41,17 @@ public class InternalUser {
 		return fullName;
 	}
 
-
 	/**
-	 * @param fullName the fullName to set
+	 * @param fullName
+	 *            the fullName to set
 	 */
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	@Override
+	public String toString() {
+		return "Name:" + fullName;
 	}
 
 }

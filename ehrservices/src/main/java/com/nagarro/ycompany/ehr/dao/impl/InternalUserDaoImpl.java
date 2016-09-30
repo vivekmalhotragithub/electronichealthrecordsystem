@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nagarro.ycompany.ehr.dao.InternalUserDao;
 import com.nagarro.ycompany.ehr.dao.entity.InternalUser;
@@ -16,6 +17,7 @@ import com.nagarro.ycompany.ehr.dao.entity.InternalUser;
  *
  */
 @Repository
+@Transactional
 public class InternalUserDaoImpl implements InternalUserDao {
 	
 	
