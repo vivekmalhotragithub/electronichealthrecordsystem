@@ -8,7 +8,7 @@ import com.nagarro.ycompany.ehr.dao.entity.InternalUser;
  * Hello world!
  *
  */
-public interface InternalUserDao 
+public interface IInternalUserDao 
 {
     public List<InternalUser>getAllUsers();
 }

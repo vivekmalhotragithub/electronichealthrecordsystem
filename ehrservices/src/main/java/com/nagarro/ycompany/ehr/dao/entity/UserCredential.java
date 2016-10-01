@@ -3,13 +3,15 @@
  */
 package com.nagarro.ycompany.ehr.dao.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,29 +24,14 @@ import javax.persistence.Table;
 public class UserCredential {
 	
 	
-    private Integer id;
-	
 	private InternalUser user;
 	
 	private String username;
 	
 	private String password;
+	
+	private List<UserRole> userRoles;
 
-	/**
-	 * @return the id
-	 */
-	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the userId
@@ -65,6 +52,7 @@ public class UserCredential {
 	/**
 	 * @return the username
 	 */
+	@Id
 	@Column(name = "USERNAME", nullable = false, length = 20)
 	public String getUsername() {
 		return username;
@@ -80,6 +68,7 @@ public class UserCredential {
 	/**
 	 * @return the password
 	 */
+	@Column(name = "PASSWORD", nullable = false, length = 50)
 	public String getPassword() {
 		return password;
 	}
@@ -87,9 +76,23 @@ public class UserCredential {
 	/**
 	 * @param password the password to set
 	 */
-	@Column(name = "PASSWORD", nullable = false, length = 50)
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the userRoles
+	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userCredential")
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	/**
+	 * @param userRoles the userRoles to set
+	 */
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 	
 	

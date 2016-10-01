@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/beans"
-	
+
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+	<bean id="userAuthenticationService"
+		class="com.nagarro.ycompany.ehr.controller.UserAuthenticationService" />
 
 	<bean id="internalUserService"
 		class="com.nagarro.ycompany.ehr.service.impl.InternalUserServiceImpl">
 		<property name="internalUserDao" ref="internalUserDao"></property>
 	</bean>
-	
+
+	<bean id="loginService" class="com.nagarro.ycompany.ehr.service.impl.LoginServiceImpl">
+		<property name="userAuthenticationDao" ref="userAuthenticationDao"></property>
+	</bean>
+
+	<bean id="dozerMapper" class="org.dozer.DozerBeanMapper" scope="singleton">
+		<property name="mappingFiles">
+			<list>
+				<value>entity-mapping.xml</value>
+			</list>
+		</property>
+	</bean>
 </beans>

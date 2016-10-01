@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.nagarro.ycompany.ehr.dao.InternalUserDao;
+import com.nagarro.ycompany.ehr.dao.IInternalUserDao;
 import com.nagarro.ycompany.ehr.dao.entity.InternalUser;
 import com.nagarro.ycompany.ehr.service.IInternalUserService;
 
@@ -18,13 +18,13 @@ import com.nagarro.ycompany.ehr.service.IInternalUserService;
 @Service
 public class InternalUserServiceImpl implements IInternalUserService {
 	
-	
-	
-	private InternalUserDao internalUserDao;
+	/**
+	 * 
+	 */
+	private IInternalUserDao internalUserDao;
 
 	
-
-	public void setInternalUserDao(InternalUserDao internalUserDao) {
+	public void setInternalUserDao(IInternalUserDao internalUserDao) {
 		this.internalUserDao = internalUserDao;
 	}
 	

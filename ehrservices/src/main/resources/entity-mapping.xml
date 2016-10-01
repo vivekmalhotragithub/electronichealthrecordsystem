@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping map-id="userCredentialToUserCredentialDTO">
+		<class-a>com.nagarro.ycompany.ehr.dao.entity.UserCredential</class-a>
+		<class-b>com.nagarro.ycompany.ehr.dao.dto.UserCredentialDTO</class-b>
+		<field>
+            <a>userRoles.role</a>
+            <b>roles</b>
+        </field>
+	</mapping>
+</mappings>

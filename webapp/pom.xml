@@ -16,6 +16,7 @@
 
 	<properties>
 		<spring.version>4.0.1.RELEASE</spring.version>
+		<spring-security.version>4.0.1.RELEASE</spring-security.version>
 	</properties>
 
 	<dependencies>
@@ -37,29 +38,43 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+		
+		<!-- Spring security -->
+		<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
 
+        
+		<!-- EHR services and DAO component-->
 		<dependency>
 			<groupId>com.nagarro.fortis.ehr</groupId>
 			<artifactId>ehrservices</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+		<!-- Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
+		
+		<!-- unit testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.12.1.GA</version>
-		</dependency>
+		
 	</dependencies>
 
 
