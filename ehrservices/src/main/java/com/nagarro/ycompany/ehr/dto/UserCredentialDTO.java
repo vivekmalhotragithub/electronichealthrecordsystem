@@ -8,13 +8,12 @@ import java.util.List;
  *
  */
 public class UserCredentialDTO {
-	
+
 	private String username;
-	
+
 	private String password;
-	
-	
-	private List<String> roles;
+
+	private List<UserRoleDTO> userRoles;
 
 	/**
 	 * @return the username
@@ -24,7 +23,8 @@ public class UserCredentialDTO {
 	}
 
 	/**
-	 * @param username the username to set
+	 * @param username
+	 *            the username to set
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -38,7 +38,8 @@ public class UserCredentialDTO {
 	}
 
 	/**
-	 * @param password the password to set
+	 * @param password
+	 *            the password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -47,24 +48,26 @@ public class UserCredentialDTO {
 	/**
 	 * @return the roles
 	 */
-	public List<String> getRoles() {
-		return roles;
+	public List<UserRoleDTO> getUserRoles() {
+		return userRoles;
 	}
 
 	/**
-	 * @param roles the roles to set
+	 * @param roles
+	 *            the roles to set
 	 */
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setUserRoles(List<UserRoleDTO> roles) {
+		this.userRoles = roles;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "UserCredentialDTO [username=" + username + ", roles=" + roles + "]";
+		return "UserCredentialDTO [username=" + username + ", roles=" + userRoles + ", password=" + password + "]";
 	}
-	
 
 }

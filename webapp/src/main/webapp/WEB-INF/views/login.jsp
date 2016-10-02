@@ -29,13 +29,22 @@
 			<div id="output"></div>
 			<div class="avatar"></div>
 			<div class="form-box">
-				<form:form name="loginForm" action="login" method="POST">
+				<form action="login" method="POST">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					<input name="username" type="text" />
-					<input type="password" />
+					<c:if test="${param.error != null}">
+						<div class="alert alert-danger">
+							<p>Invalid username and password.</p>
+						</div>
+					</c:if>
+					<c:if test="${param.logout != null}">
+						<div class="alert alert-success">
+							<p>Successfully logged out.</p>
+						</div>
+					</c:if>
+					<input id="username" name="username" type="text" /> <input id="password" name="password" type="password" />
 					<button class="btn btn-info btn-block login" type="submit">Login</button>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>

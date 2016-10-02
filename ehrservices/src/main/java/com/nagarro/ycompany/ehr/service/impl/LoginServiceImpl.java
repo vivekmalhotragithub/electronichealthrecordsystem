@@ -4,6 +4,8 @@
 package com.nagarro.ycompany.ehr.service.impl;
 
 import org.dozer.DozerBeanMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import com.nagarro.ycompany.ehr.service.ILoginService;
  */
 @Service
 public class LoginServiceImpl implements ILoginService {
+
+	private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
 	private IUserAuthenticationDao userAuthenticationDao;
 
@@ -34,9 +38,12 @@ public class LoginServiceImpl implements ILoginService {
 
 	public UserCredentialDTO authenticateUser(String username) {
 		UserCredential userCredential = userAuthenticationDao.getUserByUsername(username);
-		UserCredentialDTO userCredDTO = dozerBeanMapper.map(userCredential, UserCredentialDTO.class,
-				"userCredentialToUserCredentialDTO");
-		
+		UserCredentialDTO userCredDTO = null;
+		if (userCredential != null) {
+			logger.info("User with username:" + username + " found" + userCredential);
+			userCredDTO = dozerBeanMapper.map(userCredential, UserCredentialDTO.class,
+					"userCredentialToUserCredentialDTO");
+		}
 		return userCredDTO;
 	}
 

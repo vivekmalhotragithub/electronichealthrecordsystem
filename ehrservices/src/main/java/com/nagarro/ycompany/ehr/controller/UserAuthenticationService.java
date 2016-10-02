@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nagarro.ycompany.ehr.dto.UserCredentialDTO;
+import com.nagarro.ycompany.ehr.dto.UserRoleDTO;
 import com.nagarro.ycompany.ehr.service.impl.LoginServiceImpl;
 
 /**
@@ -32,25 +33,25 @@ public class UserAuthenticationService implements UserDetailsService {
 	@Autowired
 	private LoginServiceImpl loginService;
 
+	@Override	
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserCredentialDTO user = loginService.authenticateUser(username);
-		System.out.println("User : " + user);
+		logger.info("User : " + user);
 		if (user == null) {
 			logger.error("User not found");
 			throw new UsernameNotFoundException("Username not found");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true,
-				true, true, true, getGrantedAuthorities(user));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getGrantedAuthorities(user));
 	}
 
 	// get all roles of a User
 	private List<GrantedAuthority> getGrantedAuthorities(UserCredentialDTO user) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-		for (String profileRoles : user.getRoles()) {
-			logger.info("UserProfile : " + profileRoles);
-			authorities.add(new SimpleGrantedAuthority(profileRoles));
+		for (UserRoleDTO profileRoles : user.getUserRoles()) {
+			logger.info("UserProfile : " + profileRoles.getRole());
+			authorities.add(new SimpleGrantedAuthority(profileRoles.getRole()));
 		}
 		logger.info("authorities :" + authorities);
 		return authorities;
