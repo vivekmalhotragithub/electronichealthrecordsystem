@@ -18,15 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
+@RequestMapping(value = "/admin/*")
 public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-	@RequestMapping(value = { "/", "/admin" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView welcome(Model model) {
 		logger.info("Welcome to admin page");
 		ModelAndView mv = new ModelAndView("dashboard");
-		mv.addObject("message", "Welcome to admin page");
+		mv.addObject("name", getPrincipal());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/appointment/new", method = RequestMethod.GET)
+	public ModelAndView bookApointment(Model model) {
+		logger.info("user requested to book an appointment");
+		ModelAndView mv = new ModelAndView("bookappointment");
 		mv.addObject("name", getPrincipal());
 		return mv;
 	}

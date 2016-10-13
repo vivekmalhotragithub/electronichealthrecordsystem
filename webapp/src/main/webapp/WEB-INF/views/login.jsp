@@ -29,7 +29,7 @@
 <!-- 			<div id="output"></div> -->
 <!-- 			<div class="avatar"></div> -->
 			<div class="form-box">
-				<form action="login" method="POST">
+				<form action="<c:url value='/login' />" method="POST">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<c:if test="${param.error != null}">

@@ -3,10 +3,15 @@
  */
 package com.nagarro.ycompany.ehr.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,12 +35,14 @@ public class LoginController {
 		return new ModelAndView("login");
 	}
 	
-//	@RequestMapping(value = "/login?error", method = RequestMethod.GET)
-//	public ModelAndView loginProcess(@ModelAttribute("loginObjectDTO")UserCredentialDTO loginObjectDTO) {
-//		ModelAndView modelView =  new ModelAndView("login");
-//		modelView.addObject("errormessage", "Username or password do not match");
-//		return modelView;
-//	}
+	 @RequestMapping(value="/logout", method = RequestMethod.GET)
+	    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        if (auth != null){    
+	            new SecurityContextLogoutHandler().logout(request, response, auth);
+	        }
+	        return "redirect:/login?logout";
+	    }
 	
 	
 	// get the current user from Security context

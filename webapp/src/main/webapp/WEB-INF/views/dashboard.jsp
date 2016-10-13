@@ -30,7 +30,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <div class="navbar-brand">SB Admin</div>
+                <div class="navbar-brand">Welcome, ${name}</div>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -60,7 +60,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<c:url value="/logout" />"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -68,11 +68,11 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
                     <li class="active">
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Book an Appointment</a>
+                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="${prefix}/admin/appointment/new"><i class="fa fa-fw fa-edit"></i> Book an Appointment</a>
                     </li>
                 </ul>
             </div>
@@ -90,12 +90,10 @@
                             Dashboard <small>Statistics Overview</small>
                         </h1>
                         <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="/doctor/dashboard">Dashboards</a>
-                            </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> <a href="/doctor/appointments/book">Book an Appointment</a>
+                                <i class="fa fa-dashboard"></i>  <a href="#">Dashboards</a>
                             </li>
+                            
                         </ol>
                     </div>
                 </div>
@@ -184,9 +182,9 @@
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="${prefix}/resources/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${prefix}/resources/js/bootstrap.min.js"></script>
 
 </body>
 
