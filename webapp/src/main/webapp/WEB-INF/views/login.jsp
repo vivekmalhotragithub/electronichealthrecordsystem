@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <title>Login to EHR</title>
 <link type="text/css" rel="stylesheet"
-	href="${prefix}/resources/css/bootstrap.css" />
+	href="${prefix}/resources/css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet"
 	href="${prefix}/resources/css/style.css" />
 <!-- load Dojo -->
@@ -26,8 +26,8 @@
 <body>
 	<div class="container">
 		<div class="login-container">
-			<div id="output"></div>
-			<div class="avatar"></div>
+<!-- 			<div id="output"></div> -->
+<!-- 			<div class="avatar"></div> -->
 			<div class="form-box">
 				<form action="login" method="POST">
 					<input type="hidden" name="${_csrf.parameterName}"

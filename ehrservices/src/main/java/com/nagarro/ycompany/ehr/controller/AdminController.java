@@ -25,7 +25,7 @@ public class AdminController {
 	@RequestMapping(value = { "/", "/admin" }, method = RequestMethod.GET)
 	public ModelAndView welcome(Model model) {
 		logger.info("Welcome to admin page");
-		ModelAndView mv = new ModelAndView("helloworld");
+		ModelAndView mv = new ModelAndView("dashboard");
 		mv.addObject("message", "Welcome to admin page");
 		mv.addObject("name", getPrincipal());
 		return mv;
