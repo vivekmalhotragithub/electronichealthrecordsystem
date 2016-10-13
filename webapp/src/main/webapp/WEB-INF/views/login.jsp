@@ -42,7 +42,8 @@
 							<p>Successfully logged out.</p>
 						</div>
 					</c:if>
-					<input id="username" name="username" type="text" /> <input id="password" name="password" type="password" />
+					<input id="username" name="username" type="text" /> <input
+						id="password" name="password" type="password" />
 					<button class="btn btn-info btn-block login" type="submit">Login</button>
 				</form>
 			</div>
