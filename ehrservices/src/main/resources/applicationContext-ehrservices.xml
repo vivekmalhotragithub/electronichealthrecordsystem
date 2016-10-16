@@ -17,6 +17,16 @@
 	<bean id="loginService" class="com.nagarro.ycompany.ehr.service.impl.LoginServiceImpl">
 		<property name="userAuthenticationDao" ref="userAuthenticationDao"></property>
 	</bean>
+	
+	<bean id="patientService" class="com.nagarro.ycompany.ehr.service.impl.PatientServiceImpl">
+		<property name="patientDao" ref="patientDao"></property>
+	</bean>
+	
+	<bean id="appointmentService" class="com.nagarro.ycompany.ehr.service.impl.AppointmentServiceImpl">
+		<property name="appointmentDao" ref="appointmentDao"></property>
+	</bean>
+	
+	
 
 	<bean id="dozerMapper" class="org.dozer.DozerBeanMapper" scope="singleton">
 		<property name="mappingFiles">

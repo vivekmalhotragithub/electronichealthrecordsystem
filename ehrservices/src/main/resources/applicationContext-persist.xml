@@ -43,6 +43,8 @@
 				<value>com.nagarro.ycompany.ehr.dao.entity.InternalUser</value>
 				<value>com.nagarro.ycompany.ehr.dao.entity.UserCredential</value>
 				<value>com.nagarro.ycompany.ehr.dao.entity.UserRole</value>
+				<value>com.nagarro.ycompany.ehr.dao.entity.PatientAppointment</value>
+				<value>com.nagarro.ycompany.ehr.dao.entity.Patient</value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
@@ -77,5 +79,14 @@
 	<bean id="userAuthenticationDao" class="com.nagarro.ycompany.ehr.dao.impl.UserAuthenticationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<bean id="patientDao" class="com.nagarro.ycompany.ehr.dao.impl.PatientDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="appointmentDao" class="com.nagarro.ycompany.ehr.dao.impl.AppointmentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 
 </beans>

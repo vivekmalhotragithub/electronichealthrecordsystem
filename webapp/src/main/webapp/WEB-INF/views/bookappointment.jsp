@@ -69,7 +69,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="${prefix}/admin/home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="${prefix}/doctor/home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li class="active">
                         <a href="#"><i class="fa fa-fw fa-edit"></i> Book an Appointment</a>
@@ -91,7 +91,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="${prefix}/admin/home">Dashboards</a>
+                                <i class="fa fa-dashboard"></i>  <a href="${prefix}/doctor/home">Dashboards</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> <a href="#">Book an Appointment</a>
