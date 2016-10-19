@@ -32,7 +32,7 @@ public class UserAuthenticationDaoImpl implements IUserAuthenticationDao {
 	}
 
 	public UserCredential getUserByUsername(String username) {
-		// TODO Auto-generated method stub
+		// get user
 		Session session = sessionFactory.getCurrentSession();
 
 		Criteria criteria = session.createCriteria(UserCredential.class);

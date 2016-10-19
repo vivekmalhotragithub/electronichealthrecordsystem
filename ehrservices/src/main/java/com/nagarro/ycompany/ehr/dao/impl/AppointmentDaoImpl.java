@@ -5,7 +5,10 @@ package com.nagarro.ycompany.ehr.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,11 +34,21 @@ public class AppointmentDaoImpl implements IAppointmentDao {
 	/* (non-Javadoc)
 	 * @see com.nagarro.ycompany.ehr.dao.IAppointmentDao#searchAppointments(com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PatientAppointment> searchAppointments(
 			AppointmentFilterDTO filterDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		// get appointments
+		
+		Session session = sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(PatientAppointment.class);
+		if(filterDTO.getDoctor() != null){
+			criteria.createAlias("medicalPractitioner", "practitioner");
+			criteria.add(Restrictions.eq("practitioner.username", filterDTO.getDoctor()));
+			
+		}
+		return criteria.list();
 	}
 
 }

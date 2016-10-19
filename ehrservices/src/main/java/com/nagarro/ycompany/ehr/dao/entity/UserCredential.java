@@ -31,6 +31,8 @@ public class UserCredential {
 	private String password;
 	
 	private List<UserRole> userRoles;
+	
+	private List<PatientAppointment> appointmentList;
 
 
 	/**
@@ -96,5 +98,19 @@ public class UserCredential {
 	}
 	
 	
+	/**
+	 * @return the appointmentList
+	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "medicalPractitioner")
+	public List<PatientAppointment> getAppointmentList() {
+		return appointmentList;
+	}
+
+	/**
+	 * @param appointmentList the appointmentList to set
+	 */
+	public void setAppointmentList(List<PatientAppointment> appointmentList) {
+		this.appointmentList = appointmentList;
+	}
 
 }

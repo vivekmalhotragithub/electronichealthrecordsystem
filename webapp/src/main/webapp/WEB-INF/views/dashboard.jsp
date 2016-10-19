@@ -23,13 +23,14 @@
 
     <!-- Custom Fonts -->
     <link href="${prefix}/resources/css/fontawesome/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
 
 </head>
 
-<body>
+<body  ng-app="dashboard">
 
     <div id="wrapper">
-
+    	
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -111,65 +112,24 @@
                               <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Upcoming appointments</h3>
                           </div>
                           <div class="panel-body">
-                              <div class="table-responsive">
+                              <div class="table-responsive" ng-controller="dashboardController">
                                   <table class="table table-bordered table-hover table-striped">
                                       <thead>
                                           <tr>
-                                              <th>Order #</th>
+                                              <th>Serial #</th>
                                               <th>Appointment Date</th>
                                               <th>Time</th>
                                               <th>Patient</th>
                                           </tr>
                                       </thead>
                                       <tbody>
-                                          <tr>
-                                              <td>3326</td>
-                                              <td>10/21/2013</td>
-                                              <td>3:29 PM</td>
-                                              <td>$321.33</td>
+                                          <tr ng-repeat="appointment in appointmentList">
+                                              <td>{{appointment.appointmentId}}</td>
+                                              <td>{{appointment.appointmentDate | date : 'yyyy-MM-dd'}}</td>
+                                              <td>{{appointment.appointmentDate | date : 'HH:mm:ss'}}</td>
+                                              <td>{{appointment.patientName}}</td>
                                           </tr>
-                                          <tr>
-                                              <td>3325</td>
-                                              <td>10/21/2013</td>
-                                              <td>3:20 PM</td>
-                                              <td>$234.34</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3324</td>
-                                              <td>10/21/2013</td>
-                                              <td>3:03 PM</td>
-                                              <td>$724.17</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3323</td>
-                                              <td>10/21/2013</td>
-                                              <td>3:00 PM</td>
-                                              <td>$23.71</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3322</td>
-                                              <td>10/21/2013</td>
-                                              <td>2:49 PM</td>
-                                              <td>$8345.23</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3321</td>
-                                              <td>10/21/2013</td>
-                                              <td>2:23 PM</td>
-                                              <td>$245.12</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3320</td>
-                                              <td>10/21/2013</td>
-                                              <td>2:15 PM</td>
-                                              <td>$5663.54</td>
-                                          </tr>
-                                          <tr>
-                                              <td>3319</td>
-                                              <td>10/21/2013</td>
-                                              <td>2:13 PM</td>
-                                              <td>$943.45</td>
-                                          </tr>
+                                          
                                       </tbody>
                                   </table>
                               </div>
@@ -185,10 +145,22 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
+    
+    <script type="text/javascript">
+    var _contextPath = "${pageContext.request.contextPath}";
+    var _practitioner = "${name}";
+    var _csrftoken = "${_csrf.token}";
+	</script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="${prefix}/resources/js/angular.js"></script>
+    <script src="${prefix}/resources/js/angular-resource.js"></script>
+    <script src="${prefix}/resources/js/custom/dashboard.js"></script>
     <!-- jQuery -->
     <script src="${prefix}/resources/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="${prefix}/resources/js/bootstrap.min.js"></script>
+    
 
 </body>
 

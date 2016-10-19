@@ -9,6 +9,7 @@ import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nagarro.ycompany.ehr.dao.IPatientDao;
 import com.nagarro.ycompany.ehr.dto.PatientDTO;
@@ -18,6 +19,7 @@ import com.nagarro.ycompany.ehr.service.IPatientService;
  * @author vivekmalhotra
  *
  */
+@Service
 public class PatientServiceImpl implements IPatientService {
 	
 	

@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nagarro.ycompany.ehr.dto.AppointmentDTO;
 import com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO;
 import com.nagarro.ycompany.ehr.dto.AppointmentListDTO;
-import com.nagarro.ycompany.ehr.service.impl.AppointmentServiceImpl;
+import com.nagarro.ycompany.ehr.service.IAppointmentService;
 
 /**
  * @author vivekmalhotra
@@ -35,7 +36,7 @@ public class DoctorController {
 
 	@Autowired
 	@Qualifier(value = "appointmentService")
-	private AppointmentServiceImpl appointmentService;
+	private IAppointmentService appointmentService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(DoctorController.class);
@@ -91,7 +92,7 @@ public class DoctorController {
 	 */
 	@RequestMapping(value = "/appointment/list", method = RequestMethod.POST)
 	public @ResponseBody AppointmentListDTO getAllAppointments(
-			AppointmentFilterDTO filterDTO, HttpServletRequest request)
+			@RequestBody AppointmentFilterDTO filterDTO, HttpServletRequest request)
 			throws Exception {
 		AppointmentListDTO appointlistDTO = new AppointmentListDTO();
 

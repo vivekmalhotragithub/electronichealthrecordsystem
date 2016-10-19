@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nagarro.ycompany.ehr.dto.UserCredentialDTO;
 import com.nagarro.ycompany.ehr.dto.UserRoleDTO;
-import com.nagarro.ycompany.ehr.service.impl.LoginServiceImpl;
+import com.nagarro.ycompany.ehr.service.ILoginService;
 
 /**
  * @author vivekmalhotra
@@ -31,7 +31,7 @@ public class UserAuthenticationService implements UserDetailsService {
 	private static final Logger logger = LoggerFactory.getLogger(UserAuthenticationService.class);
 
 	@Autowired
-	private LoginServiceImpl loginService;
+	private ILoginService loginService;
 
 	@Override	
 	@Transactional(readOnly = true)

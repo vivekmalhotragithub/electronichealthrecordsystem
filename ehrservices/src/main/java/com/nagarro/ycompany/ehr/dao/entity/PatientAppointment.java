@@ -3,6 +3,8 @@
  */
 package com.nagarro.ycompany.ehr.dao.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +28,9 @@ public class PatientAppointment {
 	
 	private Patient patient;
 	
-	private InternalUser medicalPractitioner;
+	private UserCredential medicalPractitioner;
+	
+	private Date appointmentDate;
 
 	/**
 	 * @return the appointmentId
@@ -65,16 +69,31 @@ public class PatientAppointment {
 	 * @return the medicalPractitioner
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = false)
-	public InternalUser getMedicalPractitioner() {
+	@JoinColumn(name = "USERNAME", nullable = false)
+	public UserCredential getMedicalPractitioner() {
 		return medicalPractitioner;
 	}
 
 	/**
 	 * @param medicalPractitioner the medicalPractitioner to set
 	 */
-	public void setMedicalPractitioner(InternalUser medicalPractitioner) {
+	public void setMedicalPractitioner(UserCredential medicalPractitioner) {
 		this.medicalPractitioner = medicalPractitioner;
+	}
+
+	/**
+	 * @return the appointmentDate
+	 */
+	@Column(name = "APPOINTMENT_DATE", nullable = false)
+	public Date getAppointmentDate() {
+		return appointmentDate;
+	}
+
+	/**
+	 * @param appointmentDate the appointmentDate to set
+	 */
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
 	}
 	
 	
