@@ -3,6 +3,8 @@
  */
 package com.nagarro.ycompany.ehr.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
@@ -31,6 +33,7 @@ public class UserAuthenticationDaoImpl implements IUserAuthenticationDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Override
 	public UserCredential getUserByUsername(String username) {
 		// get user
 		Session session = sessionFactory.getCurrentSession();
@@ -39,6 +42,17 @@ public class UserAuthenticationDaoImpl implements IUserAuthenticationDao {
 		criteria.add(Restrictions.eq("username", username));
 
 		return (UserCredential) criteria.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserCredential> getAllUsers() {
+		// get user list
+		Session session = sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(UserCredential.class);
+		
+		return criteria.list();
 	}
 
 }
