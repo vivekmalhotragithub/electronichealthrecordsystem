@@ -125,7 +125,7 @@
                                       <tbody>
                                           <tr ng-repeat="appointment in appointmentList">
                                               <td>{{appointment.appointmentId}}</td>
-                                              <td>{{appointment.appointmentDate | date : 'yyyy-MM-dd'}}</td>
+                                              <td>{{appointment.appointmentDate | date : 'dd-MM-yyyy'}}</td>
                                               <td>{{appointment.appointmentDate | date : 'HH:mm:ss'}}</td>
                                               <td>{{appointment.patientName}}</td>
                                           </tr>

@@ -3,6 +3,8 @@
  */
 package com.nagarro.ycompany.ehr.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +13,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nagarro.ycompany.ehr.dto.AppointmentDTO;
 import com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO;
@@ -46,6 +53,14 @@ public class DoctorController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(DoctorController.class);
 
+	
+	@InitBinder
+	public void dataBinding(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, "appointmentDate", new CustomDateEditor(dateFormat, true));
+	} 
+	
 	/**
 	 * method to display dashboard
 	 * 
@@ -62,6 +77,7 @@ public class DoctorController {
 
 	/**
 	 * request to create a new appointment
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -78,24 +94,28 @@ public class DoctorController {
 
 	/**
 	 * Save the details of an appointment
+	 * 
 	 * @param appointmentDTO
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/appointment/save", method = RequestMethod.POST)
-	public String saveApointment(AppointmentDTO appointmentDTO, Model model) {
+	public String saveApointment(
+			@ModelAttribute("appointmentDTO") AppointmentDTO appointmentDTO,
+			Model model, final RedirectAttributes redirectAttributes) {
 		logger.info("user requested to save an appointment");
 		//
 		Integer appointmentId = appointmentService
 				.bookNewAppointment(appointmentDTO);
-
+		redirectAttributes.addFlashAttribute("msg", "Appointment booked successfully!");
 		// ModelAndView mv = new ModelAndView("viewappointmenet");
 		// mv.addObject("appointmentDTO", savedAppointmentDTO);
-		return "redirect:/appointment/" + appointmentId + "/view";
+		return "redirect:/doctor/appointment/" + appointmentId + "/view";
 	}
 
 	/**
 	 * Get details of an appointment
+	 * 
 	 * @param appointmentId
 	 * @param model
 	 * @return
@@ -129,6 +149,7 @@ public class DoctorController {
 
 	/**
 	 * Web service to search for appointments based on a filter criteria
+	 * 
 	 * @param model
 	 * @param filterDTO
 	 * @param request

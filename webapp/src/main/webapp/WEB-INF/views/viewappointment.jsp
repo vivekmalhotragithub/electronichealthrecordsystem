@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" session="false"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <c:set var="prefix" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +22,7 @@
 
 </head>
 
-<body ng-app="newappointment">
+<body >
 
     <div id="wrapper">
 
@@ -73,7 +72,7 @@
                         <a href="${prefix}/doctor/home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="fa fa-fw fa-edit"></i> Book an Appointment</a>
+                        <a href="${prefix}/doctor/appointment/new"><i class="fa fa-fw fa-edit"></i> Book an Appointment</a>
                     </li>
                 </ul>
             </div>
@@ -88,14 +87,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            New Appointment
+                            View Appointment Details
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="${prefix}/doctor/home">Dashboards</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> <a href="#">Book an Appointment</a>
+                                <i class="fa fa-edit"></i> <a href="${prefix}/doctor/appointment/new">Book an Appointment</a>
                             </li>
                         </ol>
                     </div>
@@ -103,65 +102,42 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6" ng-controller="appointController">
-						<spring:url value="/doctor/appointment/save" var="userActionUrl" />
-                        <form:form role="form" action="${userActionUrl}" modelAttribute="appointmentDTO" method="post">
+                    <div class="col-lg-6">
+
+                        <form:form role="form" action="#" modelAttribute="appointmentDTO" >
+                        	<!-- <c:if test="${msg != null}">
+								<div class="alert alert-success">
+									<p>${msg}</p>
+								</div>
+							</c:if> -->
                         	<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
-							<form:input type="hidden" id="patient_id" path="patientId" value="{{selectedpatient.patientId}}" />
-                            <div class="form-group">
+							<div class="form-group">
                                 <label>Patient</label>
-                                <form:input class="form-control" ng-model="selectedpatient" type="text" id="patientname"  
-                                path="patientName" placeholder="Enter patient name" required="required" 
-                                uib-typeahead="patient as patient.fullName for patient in getPatients($viewValue)" 
-                                typeahead-loading="loadingLocations" typeahead-no-results="noResults" typeahead-min-length="3"/>
-                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-    							<div ng-show="noResults">
-      									<i class="glyphicon glyphicon-remove"></i> No Results Found
-    							</div>
-                                <p class="help-block">Start by searching for patient here.</p>
+                                <p class="form-control-static">${appointmentDTO.patientName}</p>
                             </div>
-                            <div class="form-group">
-                                <label>Gender</label>
-                                <p class="form-control-static">{{selectedpatient.gender}}</p>
-                            </div>
-
+                            
                             <div class="form-group">
                                 <label>Address</label>
-                                <p class="form-control-static" >{{selectedpatient.address}}</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Date of Birth</label>
-                                <p class="form-control-static">{{selectedpatient.dateOfBirth | date : 'dd-MM-yyyy'}}</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Blood group</label>
-                                <p class="form-control-static">{{selectedpatient.bloodGroup}}</p>
+                                <p class="form-control-static" >${appointmentDTO.patientAddress}</p>
                             </div>
 
                             <div class="form-group">
                                 <label>Contact details</label>
-                                <p class="form-control-static">{{selectedpatient.mobile}}</p>
+                                <p class="form-control-static">${appointmentDTO.patientMobile}</p>
                             </div>
 
                             <div class="form-group">
                                 <label>Appointment Date</label>
-                                <form:input type="datetime-local" path="appointmentDate" required="required" />
+                                <p class="form-control-static">${appointmentDTO.appointmentDate}</p>
                             </div>
 
                             <div class="form-group">
-                                <label>Comments</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
                                 <label>Doctor</label>
-                                <form:select class="form-control" path="medicalPractitioner" items="${doctorList}" />
+                                <p class="form-control-static">${appointmentDTO.medicalPractitioner}</p>
                             </div>
-                            <button type="submit" class="btn btn-login">Submit</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                            <a href="${prefix}/doctor/appointment/new" class="btn btn-login">Book Another Appointment</a>
+                            
                         </form:form>
                     </div>
                 </div>
@@ -178,11 +154,7 @@
     var _practitioner = "${name}";
     var _csrftoken = "${_csrf.token}";
 	</script>
-	<!-- Angular modules -->
-    <script src="${prefix}/resources/js/angular.js"></script>
-    <script src="${prefix}/resources/js/angular-resource.js"></script>
-    <script src="${prefix}/resources/js/ui-bootstrap-tpls-2.2.0.min.js"></script>
-    <script src="${prefix}/resources/js/custom/newappointment.js"></script>
+	
     <!-- jQuery -->
     <script src="${prefix}/resources/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->

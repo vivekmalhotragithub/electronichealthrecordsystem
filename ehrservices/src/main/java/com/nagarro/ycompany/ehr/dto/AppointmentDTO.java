@@ -17,9 +17,9 @@ public class AppointmentDTO {
 	
 	private String patientName;
 	
-	private int patientAddress;
+	private String patientAddress;
 	
-	private int patientMobile;
+	private String patientMobile;
 
 	private Date appointmentDate;
 
@@ -72,28 +72,28 @@ public class AppointmentDTO {
 	/**
 	 * @return the patientAddress
 	 */
-	public int getPatientAddress() {
+	public String getPatientAddress() {
 		return patientAddress;
 	}
 
 	/**
 	 * @param patientAddress the patientAddress to set
 	 */
-	public void setPatientAddress(int patientAddress) {
+	public void setPatientAddress(String patientAddress) {
 		this.patientAddress = patientAddress;
 	}
 
 	/**
 	 * @return the patientMobile
 	 */
-	public int getPatientMobile() {
+	public String getPatientMobile() {
 		return patientMobile;
 	}
 
 	/**
 	 * @param patientMobile the patientMobile to set
 	 */
-	public void setPatientMobile(int patientMobile) {
+	public void setPatientMobile(String patientMobile) {
 		this.patientMobile = patientMobile;
 	}
 

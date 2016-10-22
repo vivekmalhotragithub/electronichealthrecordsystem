@@ -44,7 +44,7 @@ App.controller('appointController', [
 
 				return $http(request).then(function(response) {
 					return response.data.patientList.map(function(item) {
-						return item.fullName;
+						return item;
 					});
 				});
 			};
