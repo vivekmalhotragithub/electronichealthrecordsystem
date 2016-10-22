@@ -6,6 +6,7 @@ package com.nagarro.ycompany.ehr.service;
 import java.util.List;
 
 import com.nagarro.ycompany.ehr.dto.PatientDTO;
+import com.nagarro.ycompany.ehr.dto.PatientSeachDTO;
 
 /**
  * @author vivekmalhotra
@@ -25,6 +26,6 @@ public interface IPatientService {
 	 * @param patientName
 	 * @return
 	 */
-	List<PatientDTO> searchPatients(String patientName);
+	List<PatientDTO> searchPatients(PatientSeachDTO searchFilter);
 
 }

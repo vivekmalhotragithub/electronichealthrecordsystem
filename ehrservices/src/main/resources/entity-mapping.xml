@@ -6,7 +6,7 @@
 		<class-a>com.nagarro.ycompany.ehr.dao.entity.UserCredential</class-a>
 		<class-b>com.nagarro.ycompany.ehr.dto.UserCredentialDTO</class-b>
 	</mapping>
-	
+
 	<mapping>
 		<class-a>com.nagarro.ycompany.ehr.dao.entity.UserRole</class-a>
 		<class-b>com.nagarro.ycompany.ehr.dto.UserRoleDTO</class-b>
@@ -15,22 +15,71 @@
 			<b>username</b>
 		</field>
 	</mapping>
-	
+
 	<mapping map-id="ToAppointmentDTOSearchResult">
-		<class-a>com.nagarro.ycompany.ehr.dao.entity.PatientAppointment</class-a>
+		<class-a>com.nagarro.ycompany.ehr.dao.entity.PatientAppointment
+		</class-a>
 		<class-b>com.nagarro.ycompany.ehr.dto.AppointmentDTO</class-b>
-		
+
 		<field>
 			<a>patient.fullName</a>
 			<b>patientName</b>
 		</field>
-		
+
 		<field>
 			<a>medicalPractitioner.username</a>
 			<b>medicalPractitioner</b>
 		</field>
-		
+
 	</mapping>
-	
-	
+
+
+
+	<mapping map-id="ToPatientDTOSearchResult">
+		<class-a>com.nagarro.ycompany.ehr.dao.entity.Patient</class-a>
+		<class-b>com.nagarro.ycompany.ehr.dto.PatientDTO</class-b>
+
+		<field-exclude>
+			<a>appointmentList</a>
+			<b>appointmentList</b>
+		</field-exclude>
+
+	</mapping>
+
+
+	<mapping type="bi-directional">
+		<class-a>com.nagarro.ycompany.ehr.dao.entity.PatientAppointment
+		</class-a>
+		<class-b>com.nagarro.ycompany.ehr.dto.AppointmentDTO</class-b>
+
+		<field>
+			<a>patient.fullName</a>
+			<b>patientName</b>
+		</field>
+
+		<field>
+			<a>patient.patientId</a>
+			<b>patientId</b>
+		</field>
+
+		<field>
+			<a>patient.address</a>
+			<b>patientAddress</b>
+		</field>
+
+		<field>
+			<a>patient.mobile</a>
+			<b>patientMobile</b>
+		</field>
+
+
+		<field>
+			<a>medicalPractitioner.username</a>
+			<b>medicalPractitioner</b>
+		</field>
+
+
+	</mapping>
+
+
 </mappings>

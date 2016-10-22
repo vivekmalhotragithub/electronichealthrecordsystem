@@ -13,20 +13,29 @@ import com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO;
  *
  */
 public interface IAppointmentService {
-	
-	
+
 	/**
 	 * search for appointments
+	 * 
 	 * @param filterDTO
 	 * @return
 	 */
 	List<AppointmentDTO> searchAppointments(AppointmentFilterDTO filterDTO);
-	
+
 	/**
 	 * Create a new appointment
+	 * 
 	 * @param appointmentDTO
+	 * @return Integer
+	 */
+	Integer bookNewAppointment(AppointmentDTO appointmentDTO);
+
+	/**
+	 * Get an appointment based on appointment id
+	 * 
+	 * @param appointmentId
 	 * @return
 	 */
-	AppointmentDTO bookNewAppointment(AppointmentDTO appointmentDTO); 
+	AppointmentDTO getAppointment(int appointmentId);
 
 }

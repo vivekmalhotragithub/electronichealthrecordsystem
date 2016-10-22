@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import com.nagarro.ycompany.ehr.dto.AppointmentDTO;
 import com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO;
 import com.nagarro.ycompany.ehr.dto.AppointmentListDTO;
 import com.nagarro.ycompany.ehr.service.IAppointmentService;
+import com.nagarro.ycompany.ehr.service.ILoginService;
 
 /**
  * @author vivekmalhotra
@@ -38,11 +40,14 @@ public class DoctorController {
 	@Qualifier(value = "appointmentService")
 	private IAppointmentService appointmentService;
 
+	@Autowired
+	private ILoginService loginService;
+
 	private static final Logger logger = LoggerFactory
 			.getLogger(DoctorController.class);
 
 	/**
-	 * method to display dao
+	 * method to display dashboard
 	 * 
 	 * @param model
 	 * @return
@@ -56,7 +61,7 @@ public class DoctorController {
 	}
 
 	/**
-	 * 
+	 * request to create a new appointment
 	 * @param model
 	 * @return
 	 */
@@ -64,6 +69,46 @@ public class DoctorController {
 	public ModelAndView bookApointment(Model model) {
 		logger.info("user requested to book an appointment");
 		ModelAndView mv = new ModelAndView("bookappointment");
+		List<String> doctorList = loginService.getAllDoctors();
+		mv.addObject("doctorList", doctorList);
+		mv.addObject("appointmentDTO", new AppointmentDTO());
+		mv.addObject("name", getPrincipal());
+		return mv;
+	}
+
+	/**
+	 * Save the details of an appointment
+	 * @param appointmentDTO
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/appointment/save", method = RequestMethod.POST)
+	public String saveApointment(AppointmentDTO appointmentDTO, Model model) {
+		logger.info("user requested to save an appointment");
+		//
+		Integer appointmentId = appointmentService
+				.bookNewAppointment(appointmentDTO);
+
+		// ModelAndView mv = new ModelAndView("viewappointmenet");
+		// mv.addObject("appointmentDTO", savedAppointmentDTO);
+		return "redirect:/appointment/" + appointmentId + "/view";
+	}
+
+	/**
+	 * Get details of an appointment
+	 * @param appointmentId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/appointment/{appointmentId}/view", method = RequestMethod.GET)
+	public ModelAndView viewApointment(@PathVariable int appointmentId,
+			Model model) {
+		logger.info("user requested to save an appointment");
+		//
+		AppointmentDTO savedAppointmentDTO = appointmentService
+				.getAppointment(appointmentId);
+		ModelAndView mv = new ModelAndView("viewappointment");
+		mv.addObject("appointmentDTO", savedAppointmentDTO);
 		mv.addObject("name", getPrincipal());
 		return mv;
 	}
@@ -83,7 +128,7 @@ public class DoctorController {
 	}
 
 	/**
-	 * 
+	 * Web service to search for appointments based on a filter criteria
 	 * @param model
 	 * @param filterDTO
 	 * @param request
@@ -92,8 +137,8 @@ public class DoctorController {
 	 */
 	@RequestMapping(value = "/appointment/list", method = RequestMethod.POST)
 	public @ResponseBody AppointmentListDTO getAllAppointments(
-			@RequestBody AppointmentFilterDTO filterDTO, HttpServletRequest request)
-			throws Exception {
+			@RequestBody AppointmentFilterDTO filterDTO,
+			HttpServletRequest request) throws Exception {
 		AppointmentListDTO appointlistDTO = new AppointmentListDTO();
 
 		List<AppointmentDTO> appointmentList = appointmentService

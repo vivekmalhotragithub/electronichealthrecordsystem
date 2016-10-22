@@ -25,7 +25,7 @@ import com.nagarro.ycompany.ehr.service.impl.LoginServiceImpl;
  */
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	@Qualifier(value = "loginService")
 	private LoginServiceImpl loginService;
@@ -34,28 +34,30 @@ public class LoginController {
 	public ModelAndView loginPage() {
 		return new ModelAndView("login");
 	}
-	
-	 @RequestMapping(value="/logout", method = RequestMethod.GET)
-	    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        if (auth != null){    
-	            new SecurityContextLogoutHandler().logout(request, response, auth);
-	        }
-	        return "redirect:/login?logout";
-	    }
-	
-	
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logoutPage(HttpServletRequest request,
+			HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login?logout";
+	}
+
 	// get the current user from Security context
-	 private String getPrincipal(){
-	        String userName = null;
-	        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	 
-	        if (principal instanceof UserDetails) {
-	            userName = ((UserDetails)principal).getUsername();
-	        } else {
-	            userName = principal.toString();
-	        }
-	        return userName;
-	    }
+	private String getPrincipal() {
+		String userName = null;
+		Object principal = SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
+	}
 
 }

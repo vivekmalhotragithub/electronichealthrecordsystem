@@ -12,6 +12,17 @@ INSERT INTO `internal_user` VALUES (1,'Vivek Nahata'),(2,'Manog Babar');
 UNLOCK TABLES;
 
 --
+-- Dumping data for table `user_credential`
+--
+
+LOCK TABLES `user_credential` WRITE;
+/*!40000 ALTER TABLE `user_credential` DISABLE KEYS */;
+INSERT INTO `user_credential` VALUES ('admin','password',1),('manog','password',2);
+/*!40000 ALTER TABLE `user_credential` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
 -- Dumping data for table `patient`
 --
 
@@ -31,15 +42,6 @@ INSERT INTO `patient_appointment` VALUES (1,1,'manog','2016-10-15 17:30:00'),(2,
 /*!40000 ALTER TABLE `patient_appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Dumping data for table `user_credential`
---
-
-LOCK TABLES `user_credential` WRITE;
-/*!40000 ALTER TABLE `user_credential` DISABLE KEYS */;
-INSERT INTO `user_credential` VALUES ('admin','password',1),('manog','password',2);
-/*!40000 ALTER TABLE `user_credential` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping data for table `user_roles`

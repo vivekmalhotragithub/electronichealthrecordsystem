@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body ng-app="newappointment">
 
     <div id="wrapper">
 
@@ -102,44 +102,48 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-controller="appointController">
 
-                        <form role="form">
-
+                        <form:form role="form" action="<c:url value='/doctor/appointment/save' />" modelAttribute="appointmentDTO" method="post">
+                        	<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+							<form:input type="hidden" id="patient_id" path="patientId" ng-model="patientId" />
                             <div class="form-group">
                                 <label>Patient</label>
-                                <input class="form-control" type="text" placeholder="Enter text" required="required">
+                                <form:input class="form-control" ng-model="selectedpatient" type="text" id="patientname"  
+                                path="patientName" placeholder="Enter patient name" required="required" 
+                                uib-typeahead="patient for patientlist in getPatients($viewValue)" 
+                                typeahead-loading="loadingLocations" typeahead-no-results="noResults" />
+                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+    							<div ng-show="noResults">
+      									<i class="glyphicon glyphicon-remove"></i> No Results Found
+    							</div>
                                 <p class="help-block">Start by searching for patient here.</p>
                             </div>
 
                             <div class="form-group">
                                 <label>Address</label>
-                                <p class="form-control-static">plot-3, palam vihar, gurgaon, Haryana</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Internal ID</label>
-                                <p class="form-control-static">PAT-IND-10001</p>
+                                <p class="form-control-static" ng-bind="address"></p>
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth</label>
-                                <p class="form-control-static">23 January 1988</p>
+                                <p class="form-control-static" ng-bind="dateOfBirth"></p>
                             </div>
 
                             <div class="form-group">
                                 <label>Blood group</label>
-                                <p class="form-control-static">B +</p>
+                                <p class="form-control-static" ng-bind="bloodGroup"></p>
                             </div>
 
                             <div class="form-group">
                                 <label>Contact details</label>
-                                <p class="form-control-static">9654615544</p>
+                                <p class="form-control-static" ng-bind="mobile"></p>
                             </div>
 
                             <div class="form-group">
                                 <label>Appointment Date</label>
-                                <input type="datetime-local">
+                                <form:input type="datetime-local" path="appointmentDate" required="required" />
                             </div>
 
                             <div class="form-group">
@@ -149,17 +153,11 @@
                             
                             <div class="form-group">
                                 <label>Doctor</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <form:select class="form-control" path="medicalPractitioner" items="${doctorList}" />
                             </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
-                        </form>
+                            <button type="submit" class="btn btn-login">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </form:form>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -169,6 +167,17 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
+    
+    <script type="text/javascript">
+    var _contextPath = "${pageContext.request.contextPath}";
+    var _practitioner = "${name}";
+    var _csrftoken = "${_csrf.token}";
+	</script>
+	<!-- Angular modules -->
+    <script src="${prefix}/resources/js/angular.js"></script>
+    <script src="${prefix}/resources/js/angular-resource.js"></script>
+    <script src="${prefix}/resources/js/ui-bootstrap-tpls-2.2.0.min.js"></script>
+    <script src="${prefix}/resources/js/custom/newappointment.js"></script>
     <!-- jQuery -->
     <script src="${prefix}/resources/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->

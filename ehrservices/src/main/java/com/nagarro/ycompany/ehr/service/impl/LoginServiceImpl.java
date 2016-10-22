@@ -3,6 +3,10 @@
  */
 package com.nagarro.ycompany.ehr.service.impl;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +49,14 @@ public class LoginServiceImpl implements ILoginService {
 					"userCredentialToUserCredentialDTO");
 		}
 		return userCredDTO;
+	}
+
+	@Override
+	public List<String> getAllDoctors() {
+		// get all users 
+		List<UserCredential> userlist = userAuthenticationDao.getAllUsers();
+		List<String> usernameList = userlist.stream().map(s -> s.getUsername()).collect(Collectors.toList());
+		return usernameList;
 	}
 
 }

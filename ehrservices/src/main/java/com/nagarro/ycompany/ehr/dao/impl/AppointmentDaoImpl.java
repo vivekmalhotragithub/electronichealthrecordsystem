@@ -23,32 +23,56 @@ import com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO;
 @Repository
 @Transactional
 public class AppointmentDaoImpl implements IAppointmentDao {
-	
 
 	private SessionFactory sessionFactory;
-	
-	public void setSessionFactory(SessionFactory sf){
+
+	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.nagarro.ycompany.ehr.dao.IAppointmentDao#searchAppointments(com.nagarro.ycompany.ehr.dto.AppointmentFilterDTO)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.nagarro.ycompany.ehr.dao.IAppointmentDao#searchAppointments(com.nagarro
+	 * .ycompany.ehr.dto.AppointmentFilterDTO)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PatientAppointment> searchAppointments(
 			AppointmentFilterDTO filterDTO) {
 		// get appointments
-		
+
 		Session session = sessionFactory.getCurrentSession();
 
 		Criteria criteria = session.createCriteria(PatientAppointment.class);
-		if(filterDTO.getDoctor() != null){
+		if (filterDTO.getDoctor() != null) {
 			criteria.createAlias("medicalPractitioner", "practitioner");
-			criteria.add(Restrictions.eq("practitioner.username", filterDTO.getDoctor()));
-			
+			criteria.add(Restrictions.eq("practitioner.username",
+					filterDTO.getDoctor()));
+
 		}
 		return criteria.list();
+	}
+
+	@Override
+	public PatientAppointment getAppointment(int appointmentId) {
+		// get appointment based on appointment id
+		Session session = sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(PatientAppointment.class);
+		criteria.add(Restrictions.eq("appointmentId", appointmentId));
+		PatientAppointment appointment = (PatientAppointment) criteria
+				.uniqueResult();
+		return appointment;
+	}
+
+	@Override
+	public Integer saveAppointment(PatientAppointment appointment) {
+		// save appointment
+		Session session = sessionFactory.getCurrentSession();
+		Integer appointmentId = (Integer) session.save(appointment);
+		return appointmentId;
 	}
 
 }

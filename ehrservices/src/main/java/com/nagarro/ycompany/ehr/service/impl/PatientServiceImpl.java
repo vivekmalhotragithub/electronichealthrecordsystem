@@ -3,6 +3,7 @@
  */
 package com.nagarro.ycompany.ehr.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
@@ -10,9 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nagarro.ycompany.ehr.dao.IPatientDao;
+import com.nagarro.ycompany.ehr.dao.entity.Patient;
 import com.nagarro.ycompany.ehr.dto.PatientDTO;
+import com.nagarro.ycompany.ehr.dto.PatientSeachDTO;
 import com.nagarro.ycompany.ehr.service.IPatientService;
 
 /**
@@ -52,9 +56,20 @@ public class PatientServiceImpl implements IPatientService {
 	 * @see com.nagarro.ycompany.ehr.service.IPatientService#searchPatients(java.lang.String)
 	 */
 	@Override
-	public List<PatientDTO> searchPatients(String patientName) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public List<PatientDTO> searchPatients(PatientSeachDTO searchFilter) {
+		// search patients and return
+		List<PatientDTO> patientDTOList = new ArrayList<>();
+		List<Patient> patientList = patientDao.searchPatients(searchFilter);
+		logger.info("calling patietDAO to filter patients based on search criteria");
+
+		for(Patient patient : patientList){
+			PatientDTO patientDTO = dozerBeanMapper.map(patient, PatientDTO.class,
+					"ToPatientDTOSearchResult");
+			patientDTOList.add(patientDTO);
+		}
+		
+		return patientDTOList;
 	}
 
 }

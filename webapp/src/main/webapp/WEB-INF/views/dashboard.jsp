@@ -152,7 +152,7 @@
     var _csrftoken = "${_csrf.token}";
 	</script>
     
-    <!-- Bootstrap Core JavaScript -->
+    <!-- Angular modules -->
     <script src="${prefix}/resources/js/angular.js"></script>
     <script src="${prefix}/resources/js/angular-resource.js"></script>
     <script src="${prefix}/resources/js/custom/dashboard.js"></script>

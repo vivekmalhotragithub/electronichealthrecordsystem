@@ -19,6 +19,7 @@
 		
 		<!-- intercepts definition -->
 		<intercept-url pattern="/doctor/**" access="hasRole('ROLE_DOCTOR')" />
+		<intercept-url pattern="/patient/**" access="hasRole('ROLE_DOCTOR')" />
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		

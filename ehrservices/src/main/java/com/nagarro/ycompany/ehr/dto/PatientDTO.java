@@ -11,24 +11,23 @@ import java.util.List;
  *
  */
 public class PatientDTO {
-	
-	
-private int patientId;
-	
+
+	private int patientId;
+
 	private String fullName;
-	
+
 	private Date dateOfBirth;
-	
+
 	private String address;
-	
+
 	private String mobile;
-	
+
 	private String email;
-	
+
 	private String bloodGroup;
-	
+
 	private String gender;
-	
+
 	private List<AppointmentDTO> appointmentList;
 
 	/**
@@ -39,7 +38,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param patientId the patientId to set
+	 * @param patientId
+	 *            the patientId to set
 	 */
 	public void setPatientId(int patientId) {
 		this.patientId = patientId;
@@ -53,7 +53,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param fullName the fullName to set
+	 * @param fullName
+	 *            the fullName to set
 	 */
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
@@ -67,7 +68,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param dateOfBirth the dateOfBirth to set
+	 * @param dateOfBirth
+	 *            the dateOfBirth to set
 	 */
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
@@ -81,7 +83,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param address the address to set
+	 * @param address
+	 *            the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
@@ -95,7 +98,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param mobile the mobile to set
+	 * @param mobile
+	 *            the mobile to set
 	 */
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
@@ -109,7 +113,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -123,7 +128,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param bloodGroup the bloodGroup to set
+	 * @param bloodGroup
+	 *            the bloodGroup to set
 	 */
 	public void setBloodGroup(String bloodGroup) {
 		this.bloodGroup = bloodGroup;
@@ -137,7 +143,8 @@ private int patientId;
 	}
 
 	/**
-	 * @param gender the gender to set
+	 * @param gender
+	 *            the gender to set
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -151,10 +158,22 @@ private int patientId;
 	}
 
 	/**
-	 * @param appointmentList the appointmentList to set
+	 * @param appointmentList
+	 *            the appointmentList to set
 	 */
 	public void setAppointmentList(List<AppointmentDTO> appointmentList) {
 		this.appointmentList = appointmentList;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PatientDTO [patientId=" + patientId + ", fullName=" + fullName
+				+ ", mobile=" + mobile + ", gender=" + gender + "]";
 	}
 
 }
