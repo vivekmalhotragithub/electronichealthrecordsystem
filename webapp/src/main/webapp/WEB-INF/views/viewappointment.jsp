@@ -104,14 +104,13 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                        <form:form role="form" action="#" modelAttribute="appointmentDTO" >
-                        	<!-- <c:if test="${msg != null}">
+                        <form action="${prefix}/doctor/appointment/new" method="GET">
+							<c:if test="${msg != null}">
 								<div class="alert alert-success">
-									<p>${msg}</p>
-								</div>
-							</c:if> -->
-                        	<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
+ 									<p>${msg}</p>
+ 								</div>
+ 							</c:if>
+                        	
 							<div class="form-group">
                                 <label>Patient</label>
                                 <p class="form-control-static">${appointmentDTO.patientName}</p>
@@ -131,14 +130,19 @@
                                 <label>Appointment Date</label>
                                 <p class="form-control-static">${appointmentDTO.appointmentDate}</p>
                             </div>
+                            
+                            <div class="form-group">
+                                <label>Comments</label>
+                                <p class="form-control-static">${appointmentDTO.comments}</p>
+                            </div>
 
                             <div class="form-group">
                                 <label>Doctor</label>
                                 <p class="form-control-static">${appointmentDTO.medicalPractitioner}</p>
                             </div>
-                            <a href="${prefix}/doctor/appointment/new" class="btn btn-login">Book Another Appointment</a>
+                            <button type="submit" class="btn btn-login">Book Another Appointment</button>
                             
-                        </form:form>
+                        </form>
                     </div>
                 </div>
                 <!-- /.row -->

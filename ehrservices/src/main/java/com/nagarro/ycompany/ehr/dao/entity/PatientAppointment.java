@@ -31,6 +31,8 @@ public class PatientAppointment {
 	private UserCredential medicalPractitioner;
 	
 	private Date appointmentDate;
+	
+	private String comments;
 
 	/**
 	 * @return the appointmentId
@@ -94,6 +96,21 @@ public class PatientAppointment {
 	 */
 	public void setAppointmentDate(Date appointmentDate) {
 		this.appointmentDate = appointmentDate;
+	}
+
+	/**
+	 * @return the comments
+	 */
+	@Column(name = "COMMENTS", nullable = false)
+	public String getComments() {
+		return comments;
+	}
+
+	/**
+	 * @param comments the comments to set
+	 */
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	
 	

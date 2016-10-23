@@ -153,7 +153,7 @@
 
                             <div class="form-group">
                                 <label>Comments</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                <form:textarea class="form-control" path="comments" rows="3" required="required" maxlength="150" />
                             </div>
                             
                             <div class="form-group">

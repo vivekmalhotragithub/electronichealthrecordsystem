@@ -118,6 +118,9 @@ public class AppointmentServiceImpl implements IAppointmentService {
 		}
 		// appointment Date
 		appointment.setAppointmentDate(appointmentDTO.getAppointmentDate());
+		
+		// comments
+		appointment.setComments(appointmentDTO.getComments());
 
 		Integer appointmentId = appointmentDao.saveAppointment(appointment);
 		logger.info("create new appointment with id:" + appointmentId);

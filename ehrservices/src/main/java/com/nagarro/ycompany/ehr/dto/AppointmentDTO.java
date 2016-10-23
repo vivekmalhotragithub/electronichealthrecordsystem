@@ -24,6 +24,8 @@ public class AppointmentDTO {
 	private Date appointmentDate;
 
 	private String medicalPractitioner;
+	
+	private String comments;
 
 	/**
 	 * @return the appointmentId
@@ -125,6 +127,20 @@ public class AppointmentDTO {
 	 */
 	public void setMedicalPractitioner(String medicalpractitioner) {
 		this.medicalPractitioner = medicalpractitioner;
+	}
+
+	/**
+	 * @return the comments
+	 */
+	public String getComments() {
+		return comments;
+	}
+
+	/**
+	 * @param comments the comments to set
+	 */
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	/*
