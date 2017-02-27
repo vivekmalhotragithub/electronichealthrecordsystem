@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" session="false"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <c:set var="prefix" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -111,6 +112,11 @@
                           <div class="panel-heading">
                               <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Upcoming appointments</h3>
                           </div>
+                          <div>
+						        <security:authorize access="hasRole('ROLE_ACTOR')">
+						            <label><a href="#"> This part is visible only to ADMIN</label>
+						        </security:authorize>
+    					  </div>
                           <div class="panel-body">
                               <div class="table-responsive" ng-controller="dashboardController">
                                   <table class="table table-bordered table-hover table-striped">

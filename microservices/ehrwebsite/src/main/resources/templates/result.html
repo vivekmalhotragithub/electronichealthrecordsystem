@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>www.flybrownfield.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+<script>
+    function rowClicked(value) {
+    	alert(value);
+        //location.href = "/search?param=" + value;
+    	location.href = "/search;
+    }
+</script>    
+</head>
+<body>
+	<nav>
+       <ul>
+          <li>YCompany Electronic Health Record system</li>
+          <li><a th:href="@{/}">Search</a></li>
+        </ul>
+    </nav> 
+  <div align="center" class="form-style-8">
+	<h2>Search for Doctors</h2>
+		
+	
+	<table>
+	<thead>
+        <tr>
+            <th>#</th>
+            <th>Doctor Name</th>
+            <th>Book an Appointment</th>
+        </tr>
+    </thead>
+	
+	 <tbody>
+		<tr th:each="doctor : ${uidata.doctors}" >
+		  	 <td th:text="${doctor.id}"/>
+		  	 <td th:text="${doctor.fullName}"/>
+ 	 		 <td>
+ 	 		 <a th:href="@{/doctor/{doctorId}/book(doctorId=${doctor.id})}">Book</a>
+ 	 		 </td>
+		</tr>
+		 </tbody>
+	</table>
+    
+    </div>
+</body>
+</html>
