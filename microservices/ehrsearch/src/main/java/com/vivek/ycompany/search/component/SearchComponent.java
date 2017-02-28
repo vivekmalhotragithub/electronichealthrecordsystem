@@ -24,7 +24,7 @@ public class SearchComponent {
 
 	public List<Doctor> search(SearchQuery query){
 		logger.info("Searching for doctors with name=" + query.getDoctor());
-		List<Doctor> flights= doctorRepository.findByFullName(query.getDoctor()); 
+		List<Doctor> flights= doctorRepository.findByFullNameLikeIgnoreCase(query.getDoctor()+"%"); 
 		
 		return flights; 
 	}
@@ -35,5 +35,5 @@ public class SearchComponent {
 //		Doctor inv = flight.getInventory();
 //		inv.setCount(inventory);
 //		doctorRepository.save(flight); 
-//	}	 
+//	} 
 }

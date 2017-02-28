@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.vivek.ycompany.search.entity.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-	List<Doctor> findByFullName(String fullName);
+	List<Doctor> findByFullNameLikeIgnoreCase(String fullName);
 } 

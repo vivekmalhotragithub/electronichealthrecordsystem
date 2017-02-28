@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.controller;
+package com.vivek.ycompany.book.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,28 +8,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brownfield.pss.book.component.BookingComponent;
-import com.brownfield.pss.book.entity.BookingRecord;
+import com.vivek.ycompany.book.component.AppointmentComponent;
+import com.vivek.ycompany.book.entity.Appointment;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/booking")
-public class BookingController {
-	BookingComponent bookingComponent;
+public class AppointmentController {
+	
+	AppointmentComponent appointmentComponent;
 	
 	@Autowired
-	BookingController(BookingComponent bookingComponent){
-		this.bookingComponent = bookingComponent;
+	AppointmentController(AppointmentComponent bookingComponent){
+		this.appointmentComponent = bookingComponent;
 	}
 
 	@RequestMapping(value="/create" , method = RequestMethod.POST)
-	long book(@RequestBody BookingRecord record){
-		System.out.println("Booking Request" + record); 
-		return bookingComponent.book(record);
+	long book(@RequestBody Appointment appointment){
+		System.out.println("Appointment Request" + appointment); 
+		return appointmentComponent.book(appointment);
 	}
 	
 	@RequestMapping("/get/{id}")
-	BookingRecord getBooking(@PathVariable long id){
-		return bookingComponent.getBooking(id);
+	Appointment getBooking(@PathVariable long id){
+		return appointmentComponent.getAppointment(id);
 	}	
 }

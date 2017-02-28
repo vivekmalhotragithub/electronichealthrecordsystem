@@ -13,6 +13,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
+import com.vivek.ycompany.client.dto.Doctor;
+
 @EnableFeignClients
 @EnableDiscoveryClient
 @EnableGlobalMethodSecurity

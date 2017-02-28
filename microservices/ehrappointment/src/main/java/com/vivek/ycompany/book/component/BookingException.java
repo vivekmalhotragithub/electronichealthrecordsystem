@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.component;
+package com.vivek.ycompany.book.component;
 
 public class BookingException extends RuntimeException  {
 	
