@@ -2,11 +2,14 @@ package com.vivek.ycompany.client.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class Appointment {
 
 	long id;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date date;
 	
 	Patient patient;
