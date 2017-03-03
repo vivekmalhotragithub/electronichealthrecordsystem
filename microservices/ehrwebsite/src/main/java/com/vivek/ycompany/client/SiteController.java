@@ -33,7 +33,7 @@ public class SiteController {
 	
     @RequestMapping(value="/", method=RequestMethod.GET)
     public String greetingForm(Model model) {
-    	SearchQuery query = new  SearchQuery("please add here");
+    	SearchQuery query = new  SearchQuery("");
     	UIData uiData = new UIData();
     	uiData.setSearchQuery(query);
         model.addAttribute("uidata",uiData );
@@ -41,11 +41,20 @@ public class SiteController {
     }   
 
    @RequestMapping(value="/search", method=RequestMethod.POST)
-   public String greetingSubmit(@ModelAttribute UIData uiData, Model model) {
+   public String searchSubmit(@ModelAttribute UIData uiData, Model model) {
 		List<Doctor> doctors= searchServiceProxy.getDoctors(uiData.getSearchQuery()); 
 		uiData.setDoctors(doctors);
 		model.addAttribute("uidata", uiData);
        return "result";
+   }
+   
+   @RequestMapping(value="/appointment", method=RequestMethod.POST)
+   public String getAppointments(Model model) {
+	    UIData uiData = new UIData();
+	    List<Appointment> appointments = searchServiceProxy.getAppointments();
+   	 	uiData.setAppointments(appointments);
+        model.addAttribute("uidata", uiData );
+        return "appointments";
    }
 //   
    @RequestMapping(value="/doctor/{doctorId}/book", method=RequestMethod.GET)

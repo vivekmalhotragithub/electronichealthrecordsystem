@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>www.flybrownfield.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+	<nav>
+       <ul>
+          <li>BrownField Airline </li>
+          <li><a th:href="@{/}">Search</a></li>
+           <li><a th:href="@{/appointments}">Appointments</a></li>
+        </ul>
+    </nav> 
+  	<div align="center" class="form-style-8">
+		<h2>Appointments</h2>
+			
+		
+		<table>
+			<thead>
+		        <tr>
+		            <th>#</th>
+		            <th>Doctor Name</th>
+		            <th>Patient Name</th>
+		            <th>Patient Email</th>
+		        </tr>
+		    </thead>
+			
+			 <tbody>
+				<tr th:each="appointment : ${uidata.appointments}" >
+				  	 <td th:text="${appointment.id}"/>
+				  	 <td th:text="${appointment.doctor.fullName}"/>
+				  	 <td th:text="${appointment.patient.fullName}"/>
+				  	 <td th:text="${appointment.patient.email}"/>
+				</tr>
+			 </tbody>
+		</table>
+	    
+    </div>
+</body>
+</html>

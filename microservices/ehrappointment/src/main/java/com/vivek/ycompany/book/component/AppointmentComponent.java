@@ -62,17 +62,19 @@ public class AppointmentComponent {
 		long id = appointmentRepository.save(record).getId();
 		logger.info("Successfully saved Appointment");
 		// send a message to search to update Appointments
+		record.setId(id);
 		logger.info("sending a Appointment event");
-		Map<String, Object> appointmentDetails = new HashMap<String, Object>();
-		appointmentDetails.put("DOCTOR_ID", record.getDoctor().getId());
-		appointmentDetails.put("PATIENT_ID", record.getPatient().getId());
-		appointmentDetails.put("PATIENT_NAME", record.getPatient()
-				.getFullName());
-		appointmentDetails.put("PATIENT_EMAIL", record.getPatient().getEmail());
-		appointmentDetails.put("APPOINTMENT_DATE", record.getDate());
-		sender.send(appointmentDetails);
+//		Map<String, Object> appointmentDetails = new HashMap<String, Object>();
+//		appointmentDetails.put("DOCTOR_ID", record.getDoctor().getId());
+//		appointmentDetails.put("DOCTOR_NAME", record.getDoctor().getId());
+//		appointmentDetails.put("PATIENT_ID", record.getPatient().getId());
+//		appointmentDetails.put("PATIENT_NAME", record.getPatient()
+//				.getFullName());
+//		appointmentDetails.put("PATIENT_EMAIL", record.getPatient().getEmail());
+//		appointmentDetails.put("APPOINTMENT_DATE", record.getDate());
+		sender.send(record);
 		logger.info("Appointment event successfully delivered "
-				+ appointmentDetails);
+				+ record);
 		return id;
 	}
 

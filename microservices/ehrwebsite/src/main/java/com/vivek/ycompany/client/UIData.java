@@ -9,6 +9,7 @@ public class UIData {
 	
 	private SearchQuery searchQuery;
 	private List<Doctor> doctors;
+	private List<Appointment> appointments;
 	private Appointment newAppointment;
 	
 	public SearchQuery getSearchQuery() {
@@ -25,6 +26,14 @@ public class UIData {
 
 	public void setDoctors(List<Doctor> doctors) {
 		this.doctors = doctors;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	public Appointment getNewAppointment() {

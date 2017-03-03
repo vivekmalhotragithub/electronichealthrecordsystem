@@ -19,32 +19,33 @@
        <ul>
           <li>YCompany Electronic Health Record system </li>
           <li><a th:href="@{/}">Search</a></li>
+          <li><a th:href="@{/appointments}">Appointments</a></li>
         </ul>
     </nav> 
-  <div align="center" class="form-style-8">
-	<h2>Search for Doctors</h2>
+  	<div align="center" class="form-style-8">
+		<h2>Search Result for Doctors</h2>
+			
 		
-	
-	<table>
-	<thead>
-        <tr>
-            <th>#</th>
-            <th>Doctor Name</th>
-            <th>Book an Appointment</th>
-        </tr>
-    </thead>
-	
-	 <tbody>
-		<tr th:each="doctor : ${uidata.doctors}" >
-		  	 <td th:text="${doctor.id}"/>
-		  	 <td th:text="${doctor.fullName}"/>
- 	 		 <td>
- 	 		 <a th:href="@{/doctor/{doctorId}/book(doctorId=${doctor.id})}">Book</a>
- 	 		 </td>
-		</tr>
-		 </tbody>
-	</table>
-    
+		<table>
+		<thead>
+	        <tr>
+	            <th>#</th>
+	            <th>Doctor Name</th>
+	            <th>Book an Appointment</th>
+	        </tr>
+	    </thead>
+		
+		 <tbody>
+			<tr th:each="doctor : ${uidata.doctors}" >
+			  	 <td th:text="${doctor.id}"/>
+			  	 <td th:text="${doctor.fullName}"/>
+	 	 		 <td>
+	 	 		 <a th:href="@{/doctor/{doctorId}/book(doctorId=${doctor.id})}">Book</a>
+	 	 		 </td>
+			</tr>
+			 </tbody>
+		</table>
+	    
     </div>
 </body>
 </html>

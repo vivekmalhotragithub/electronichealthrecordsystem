@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vivek.ycompany.search.component.SearchComponent;
+import com.vivek.ycompany.search.entity.Appointment;
 import com.vivek.ycompany.search.entity.Doctor;
 
 @RefreshScope
@@ -46,6 +47,14 @@ class SearchRestController {
 		}
 		
 		return searchComponent.search(query);
+	}
+	
+	@RequestMapping(value="/appointments", method = RequestMethod.GET)
+	List<Appointment> getAllAppointments(){
+		System.out.println("Get all appointments");
+		
+		
+		return searchComponent.getAllAppointment();
 	}
  
 }

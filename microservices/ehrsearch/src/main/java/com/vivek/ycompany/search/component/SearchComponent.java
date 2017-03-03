@@ -8,14 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.vivek.ycompany.search.controller.SearchQuery;
+import com.vivek.ycompany.search.entity.Appointment;
 import com.vivek.ycompany.search.entity.Doctor;
+import com.vivek.ycompany.search.repository.AppointmentRepository;
 import com.vivek.ycompany.search.repository.DoctorRepository;
 
 @Component
 public class SearchComponent {
-	private DoctorRepository doctorRepository;
 	private static final Logger logger = LoggerFactory.getLogger(SearchComponent.class);
 	
+	private AppointmentRepository appointmentRepository;
+	
+	private DoctorRepository doctorRepository;
 	
 	@Autowired
 	public SearchComponent(DoctorRepository flightRepository){
@@ -29,11 +33,13 @@ public class SearchComponent {
 		return flights; 
 	}
 
-//	public void updateInventory(String flightNumber, String flightDate, int inventory) {
-//		logger.info("Updating inventory for flight "+ flightNumber + " innventory "+ inventory); 
-//		Appointment flight = doctorRepository.findByFlightNumberAndFlightDate(flightNumber,flightDate);
-//		Doctor inv = flight.getInventory();
-//		inv.setCount(inventory);
-//		doctorRepository.save(flight); 
-//	} 
+	public void updateAppointment(Appointment appointment) {
+		logger.info("Adding Appointment with details="+appointment);
+		appointmentRepository.save(appointment);
+	}
+	
+	public List<Appointment> getAllAppointment() {
+		logger.info("Fetching all Appointments");
+		return appointmentRepository.findAll();
+	}
 }
