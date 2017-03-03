@@ -1,17 +1,13 @@
 package com.vivek.ycompany.client;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vivek.ycompany.client.dto.Appointment;
 import com.vivek.ycompany.client.dto.Doctor;
-import com.vivek.ycompany.client.dto.Patient;
 
 @Controller
 public class SiteController {
@@ -48,7 +43,7 @@ public class SiteController {
        return "result";
    }
    
-   @RequestMapping(value="/appointment", method=RequestMethod.POST)
+   @RequestMapping(value="/appointments", method=RequestMethod.GET)
    public String getAppointments(Model model) {
 	    UIData uiData = new UIData();
 	    List<Appointment> appointments = searchServiceProxy.getAppointments();
@@ -62,7 +57,7 @@ public class SiteController {
 		   Model model) {
    		UIData uiData = new UIData();
    		Doctor doctor = appointmentServiceProxy.getDoctors(doctorId);
-   		Appointment appointment = new Appointment(new Date(), new Patient("", ""), doctor);
+   		Appointment appointment = new Appointment(new Date(), doctor);
    		
    		uiData.setNewAppointment(appointment);
 	   model.addAttribute("uidata",uiData);

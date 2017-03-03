@@ -18,63 +18,52 @@ public class Patient {
     
     @Column(name = "email", unique=true)
     String email;
+    
+    String gender;
 
     
-	public Patient(String fullName,String email) {
+	public Patient(String fullName,String email, String gender) {
 		super();
 		this.fullName = fullName;
 		this.email = email;
+		this.gender = gender;
 	}
 
 	public Patient() {
 		super();
 	}
 
- 
-	/**
-	 * 
-	 * @return
-	 */
 	public long getId() {
 		return id;
 	}
 	
-	/**
-	 * 
-	 * @param id
-	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	
-
-	/**
-	 * @return the fullName
-	 */
+ 
 	public String getFullName() {
 		return fullName;
 	}
-
-	/**
-	 * @param fullName the fullName to set
-	 */
+ 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	@Override

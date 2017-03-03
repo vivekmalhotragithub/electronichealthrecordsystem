@@ -32,8 +32,8 @@
 				<tr th:each="appointment : ${uidata.appointments}" >
 				  	 <td th:text="${appointment.id}"/>
 				  	 <td th:text="${appointment.doctor.fullName}"/>
-				  	 <td th:text="${appointment.patient.fullName}"/>
-				  	 <td th:text="${appointment.patient.email}"/>
+				  	 <td th:text="${appointment.patientName}"/>
+				  	 <td th:text="${appointment.patientEmail}"/>
 				</tr>
 			 </tbody>
 		</table>

@@ -14,9 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import com.vivek.ycompany.book.component.AppointmentComponent;
-import com.vivek.ycompany.book.entity.Appointment;
+import com.vivek.ycompany.book.dto.AppointmentDTO;
+import com.vivek.ycompany.book.dto.DoctorDTO;
 import com.vivek.ycompany.book.entity.Doctor;
-import com.vivek.ycompany.book.entity.Patient;
 import com.vivek.ycompany.book.repository.DoctorRepository;
 
 
@@ -41,15 +41,17 @@ public class Application implements CommandLineRunner{
 		
 		Doctor[] invs = { 
 					new Doctor("Vivek Malhotra"),
-					new Doctor("Varun Malhotra"),
 					new Doctor("Pankaj Dewan"),
 					new Doctor("Ankita Diwakar"),
+					new Doctor("Varun Malhotra")
 		};
 		Arrays.asList(invs).forEach(doctor -> doctorRepository.save(doctor));
 				
-		Doctor doctor = doctorRepository.findOne(1L);
-		
-		Appointment booking = new Appointment(new Date(), new Patient("Anjali Mehrotra", "anjali.mehrotra@gmail.com"), doctor);
+		DoctorDTO doctor = new DoctorDTO("Varun Malhotra");
+		doctor.setId(4);
+		AppointmentDTO booking = new AppointmentDTO(new Date(), doctor);
+		booking.setPatientName( "Anjali Mehrotra");
+		booking.setPatientEmail("anjali.mehrotra@gmail.com");
 		
  		long record  = bookingComponent.book(booking);
 		logger.info("Appointment successfully saved..." + record);

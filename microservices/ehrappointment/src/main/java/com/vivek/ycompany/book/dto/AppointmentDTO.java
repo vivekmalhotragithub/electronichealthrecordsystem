@@ -1,40 +1,31 @@
-package com.vivek.ycompany.search.entity;
+package com.vivek.ycompany.book.dto;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-public class Appointment {
+public class AppointmentDTO {
 
-	@Id
 	long id;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date date;
 
-	// @OneToOne(cascade = CascadeType.ALL)
-	// @JoinColumn(name="patient_Id")
-	// Patient patient;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "doctor_Id")
-	Doctor doctor;
+	DoctorDTO doctor;
 
 	long patientId;
 
 	String patientName;
 
 	String patientEmail;
+	
+	String patientGender;
 
-	public Appointment() {
+	public AppointmentDTO() {
 		super();
 	}
 
-	public Appointment(Date date, Doctor doctor) {
+	public AppointmentDTO(Date date, DoctorDTO doctor) {
 		super();
 		this.date = date;
 		this.doctor = doctor;
@@ -56,11 +47,11 @@ public class Appointment {
 		this.date = date;
 	}
 
-	public Doctor getDoctor() {
+	public DoctorDTO getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(Doctor doctor) {
+	public void setDoctor(DoctorDTO doctor) {
 		this.doctor = doctor;
 	}
 
@@ -88,9 +79,17 @@ public class Appointment {
 		this.patientEmail = patientEmail;
 	}
 
+	public String getPatientGender() {
+		return patientGender;
+	}
+
+	public void setPatientGender(String patientGender) {
+		this.patientGender = patientGender;
+	}
+
 	@Override
 	public String toString() {
-		return "Appointment [id=" + id + ", Date=" + date + ", Patient="
+		return "Appointment [id=" + id + ", Date=" + date + ", Patient name="
 				+ patientName + ",Patient email=" + patientEmail + ", Doctor="
 				+ doctor + "]";
 	}

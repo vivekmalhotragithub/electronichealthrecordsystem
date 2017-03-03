@@ -34,16 +34,16 @@
 	</table>
 	</h3>
    	<table>
-    	  <tr> <td>Full Name </td><td> <input required="required" type="text" th:field="${uidata.newAppointment.patient.fullName}" /> </td></tr>	
+    	  <tr> <td>Full Name </td><td> <input required="required" type="text" th:field="${uidata.newAppointment.patientName}" /> </td></tr>	
 	      <tr> <td>Gender </td> 
 	      	<td>
-	      		<select required="required" th:field="${uidata.newAppointment.patient.gender}" >
+	      		<select required="required" th:field="${uidata.newAppointment.patientGender}" >
 					  <option value="Male">Male</option>
 					  <option value="Female">Female</option>
 				</select>
 	      	</td>
 	      </tr>
-	      <tr> <td>Email </td><td> <input required="required" type="text" th:field="${uidata.newAppointment.patient.email}" /> </td></tr>
+	      <tr> <td>Email </td><td> <input required="required" type="text" th:field="${uidata.newAppointment.patientEmail}" /> </td></tr>
 	      <tr> <td>Appointment Date </td><td> <input type="date" th:field="${uidata.newAppointment.date}" /> </td></tr>
 	      <tr> <td><input type="submit" value="Confirm" /> </td></tr>	
 	   </table>

@@ -48,21 +48,7 @@ public class Application implements CommandLineRunner {
  		if(doctors == null || doctors.size() == 0){
  			return;
  		}
-		Doctor flight = doctors.get(0);
-//		AppointmentRecord booking = new AppointmentRecord(flight.getFlightNumber(),flight.getOrigin(),
-//												  flight.getDestination(), flight.getFlightDate(),null,
-//												  flight.getFares().getFare());
-//		Set<Passenger> passengers = new HashSet<Passenger>();
-//		passengers.add(new Passenger("Gavin","Franc","Male", booking));
-//		booking.setPassengers(passengers);
-//		long bookingId =0;
-//		try { 
-//			//long bookingId = bookingClient.postForObject("http://book-service/booking/create", booking, long.class); 
-//			 bookingId = bookingClient.postForObject("http://localhost:8060/booking/create", booking, long.class); 
-//			logger.info("Booking created "+ bookingId);
-//		}catch (Exception e){
-//			logger.error("BOOKING SERVICE NOT AVAILABLE...!!!");
-//		}
+
 		
 	}
 		 

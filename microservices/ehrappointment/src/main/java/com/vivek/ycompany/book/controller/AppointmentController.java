@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vivek.ycompany.book.component.AppointmentComponent;
+import com.vivek.ycompany.book.dto.AppointmentDTO;
 import com.vivek.ycompany.book.entity.Appointment;
 
 @RestController
@@ -24,7 +25,7 @@ public class AppointmentController {
 	}
 
 	@RequestMapping(value="/create" , method = RequestMethod.POST)
-	long book(@RequestBody Appointment appointment){
+	long book(@RequestBody AppointmentDTO appointment){
 		System.out.println("Appointment Request" + appointment); 
 		return appointmentComponent.book(appointment);
 	}
